@@ -3,4 +3,16 @@ class Tree:
     self.root = root
 
   def get_element_by_id(self, id):
-    pass
+      def dfs(node):
+          if node is None:
+               return None
+
+          if node.get("id") == id:
+              return node
+
+          for child in node.get("children", []):
+              found = dfs(child)
+              if found:
+                  return found
+          return None
+      return dfs(self.root)
